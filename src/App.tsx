@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 const getCookie = (key: string, defaultValue = ""): string => {
@@ -16,18 +14,8 @@ const setCookie = (key: string, val: string, expiration = new Date()): void => {
 const App = () => {
 
   const [count, setCount] = useState(Number(getCookie("count", "0")))
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -39,15 +27,11 @@ const App = () => {
           Delete Cookie
         </button>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-        <p>
           Cookies: { document.cookie }
         </p>
+        <div>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
