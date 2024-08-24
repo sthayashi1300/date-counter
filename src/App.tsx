@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import InfiniteCalendar from 'react-infinite-calendar';
+import 'react-infinite-calendar/styles.css'; // only needs to be imported once
 
 const getCookie = (key: string, defaultValue = ""): string => {
   var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
@@ -13,23 +15,30 @@ const setCookie = (key: string, val: string, expiration = new Date()): void => {
 
 const App = () => {
 
-  const [count, setCount] = useState(Number(getCookie("count", "0")))
+  const [date, setDate] = useState(new Date(getCookie("date") || new Date().toISOString()))
   return (
     <>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <p>
+          date is {date.toISOString()}
+        </p>
+        <button onClick={() => { setCookie("date", date.toISOString()); window.location.reload() }}>
+          Save Date to Cookie
         </button>
-        <button onClick={() => setCookie("count", String(count))}>
-          save count
-        </button>
-        <button onClick={() => setCookie("count", "0", new Date(0))}>
+        <button onClick={() => { setCookie("date", "0", new Date(0)); window.location.reload() }}>
           Delete Cookie
         </button>
         <p>
-          Cookies: { document.cookie }
+          Cookies: {document.cookie}
         </p>
         <div>
+          <InfiniteCalendar width={600} height={400}
+            selected={date}
+            onSelect={setDate}
+            displayOptions={{
+              showHeader: false
+            }}
+          />
         </div>
       </div>
     </>
