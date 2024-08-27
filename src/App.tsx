@@ -29,7 +29,7 @@ const App = () => {
           Delete Cookie
         </button>
         <p>
-          Cookies: {document.cookie}
+          Current Cookies: {document.cookie}
         </p>
         <div>
           <InfiniteCalendar width={600} height={400}
